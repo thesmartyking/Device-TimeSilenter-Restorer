@@ -5,6 +5,4 @@ This Application Let User to Enter Any time Section in which the device will be 
 
 To Download this Signed Apk for the Android Device > 6.0 :- [**Download App From Here !**](https://github.com/thesmartyking/Device-TimeSilenter-Restorer/Device-TimeSilenter.apk)
 
-![](https://github.com/thesmartyking/Device-TimeSilenter-Restorer/blob/master/IMAGES/WhatsApp%20Image%202020-08-12%20at%2010.22.32%20PM.jpeg)
-
-![](https://github.com/thesmartyking/Device-TimeSilenter-Restorer/blob/master/IMAGES/WhatsApp%20Image%202020-08-12%20at%2010.24.44%20PM.jpeg)
+[![Whats-App-Image-2020-08-12-at-10-22-32-PM.jpg](https://i.postimg.cc/Ssyz0hf5/Whats-App-Image-2020-08-12-at-10-22-32-PM.jpg)](https://postimg.cc/sBN2Sb89)  [![Whats-App-Image-2020-08-12-at-10-24-44-PM.jpg](https://i.postimg.cc/fbQ9KXtM/Whats-App-Image-2020-08-12-at-10-24-44-PM.jpg)](https://postimg.cc/3k9NrkFq)
