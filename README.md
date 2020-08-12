@@ -2,7 +2,7 @@
 This Application Let User to Enter Any time Section in which the device will be automatically silent, this Acts same as Scheduler On &amp; Off Time For Android device, this application will let the device in silent mode in given time section by the user.
 
 
-To Download this Signed Apk for the Android Device > 6.0 :- [**Download App From Here !**](https://github.com/thesmartyking/Device-TimeSilenter-Restorer/raw/master/Device-TimeSilenter.apk)
+**To Download this Signed Apk for the Android Device > 6.0 :-** [**Download App From Here !**](https://github.com/thesmartyking/Device-TimeSilenter-Restorer/raw/master/Device-TimeSilenter.apk)
 
 ---
 
