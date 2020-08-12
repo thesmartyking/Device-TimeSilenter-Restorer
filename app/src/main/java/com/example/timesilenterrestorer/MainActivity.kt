@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        cancelbtn.visibility=View.GONE
         cancelbtn.setOnClickListener {
             stopService(Intent(applicationContext, TimeService::class.java))
             Toast.makeText(applicationContext, "Service running in Background--> Stopped", Toast.LENGTH_SHORT).show()

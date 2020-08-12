@@ -1,14 +1,19 @@
 package com.example.timesilenterrestorer
 
-import android.app.Service
+import android.R
+import android.annotation.SuppressLint
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.media.AudioManager
+import android.os.Build
 import android.os.Handler
 import android.os.IBinder
 import android.util.Log
-import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.app.NotificationCompat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,53 +45,66 @@ class TimeService :Service(){
         super.onDestroy()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun ondestroy_create_notification()
+    {
+        val NOTIFICATION_CHANNEL_ID = "com.example.timesilenterrestorer"
+        val channelName = "Background Service"
+        val chan = NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, NotificationManager.IMPORTANCE_HIGH)
+        chan.lightColor = Color.RED
+//        chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
+        val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        manager.createNotificationChannel(chan)
+//        val notificationIntent = Intent(this, MainActivity::class.java)
+        val inclick = "Click on Notification to Run Service"
+        val notificationIntent = Intent(applicationContext, TimeService::class.java)
+//        val pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0)
+        val pendingIntent = PendingIntent.getService(this, 0, notificationIntent, 0)
+        val notification=NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+//            .setSmallIcon(R.drawable.ic_clock_in_placeholder_shape_svgrepo_com)
+            .setAutoCancel(false)
+            .setContentTitle("Device Silenter App --> ON")
+            .setContentText(inclick)
+            .setContentIntent(pendingIntent)
+            .build()
+//        startForeground(1337, notification)
+        startForeground(1, notification)
+    }
+
     override fun onStart(intent: Intent?, startId: Int) {
         super.onStart(intent, startId)
         Log.i("onStart", "onStart")
     }
 
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         onTaskRemoved(intent)
 //        Toast.makeText(applicationContext, "This is a Service running in Background", Toast.LENGTH_SHORT).show()
         val cal = Calendar.getInstance()
         val currenttime= SimpleDateFormat("HH:mm").format(cal.time).toString()
-//        val start_time=intent.getStringExtra("StartTime")
+
         sharedPreferences = getSharedPreferences(time_key, Context.MODE_PRIVATE);
         val start_time=sharedPreferences.getString(strttime,"")!!
         val end_time=sharedPreferences.getString(endtime,"")!!
-//        val end_time=intent.getStringExtra("EndTime")
-        /*Log.d("S:- ",start_time)
-        Log.d("E:- ",end_time)
-        Log.d("Time:- ",currenttime)*/
 
-//        Log.d("Stime:- ",start_time )
-
-//       do {
-//        while (currenttime == end_time) {
-            if (currenttime == start_time) {
+        if (currenttime == start_time) {
                 mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-//                mAudioManager.setRingerMode(0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_RING, 0, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, 0, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, 0, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 0, 0)
-//            mAudioManager.ringerMode=0
-//            mAudioManager.adjustAudio(true)
-
-            }
-           if (currenttime == end_time) {
+        }
+        if (currenttime == end_time) {
                 mAudioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-//            mAudioManager.setRingerMode(AudioManager.RINGER_MODE_NORMAL)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_RING, 15, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_ALARM, 2, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, 15, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 0)
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, 15, 0)
-//            mAudioManager.ringerMode=15
-            }
-//       }while (currenttime == end_time)
-//        }
+        }
+//        ondestroy_create_notification()
         return START_STICKY
     }
     override fun onBind(intent: Intent): IBinder? {
