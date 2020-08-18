@@ -16,7 +16,9 @@
         android:roundIcon="@drawable/ic_clock_in_placeholder_shape_svgrepo_com"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
